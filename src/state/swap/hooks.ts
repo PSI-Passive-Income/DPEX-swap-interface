@@ -1,5 +1,5 @@
 import { parseUnits } from '@ethersproject/units'
-import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount, Trade } from '@pancakeswap-libs/sdk'
+import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount, Trade } from '@passive-income/dpex-sdk'
 import { ParsedQs } from 'qs'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -16,6 +16,7 @@ import { SwapState } from './reducer'
 
 import { useUserSlippageTolerance } from '../user/hooks'
 import { computeSlippageAdjustedAmounts } from '../../utils/prices'
+import { ROUTER_ADDRESS, FACTORY_ADDRESS } from '../../constants'
 
 export function useSwapState(): AppState['swap'] {
   return useSelector<AppState, AppState['swap']>((state) => state.swap)
@@ -112,7 +113,7 @@ export function useDerivedSwapInfo(): {
   v2Trade: Trade | undefined
   inputError?: string
 } {
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
 
   const {
     independentField,
@@ -163,11 +164,14 @@ export function useDerivedSwapInfo(): {
     inputError = inputError ?? 'Select a token'
   }
 
+  const badRecipientAddresses = BAD_RECIPIENT_ADDRESSES;
+  if (chainId) badRecipientAddresses.push(...[ROUTER_ADDRESS[chainId], FACTORY_ADDRESS[chainId]]);
+
   const formattedTo = isAddress(to)
   if (!to || !formattedTo) {
     inputError = inputError ?? 'Enter a recipient'
   } else if (
-    BAD_RECIPIENT_ADDRESSES.indexOf(formattedTo) !== -1 ||
+    badRecipientAddresses.indexOf(formattedTo) !== -1 ||
     (bestTradeExactIn && involvesAddress(bestTradeExactIn, formattedTo)) ||
     (bestTradeExactOut && involvesAddress(bestTradeExactOut, formattedTo))
   ) {

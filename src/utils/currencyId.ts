@@ -1,4 +1,4 @@
-import { Currency, ETHER, Token } from '@pancakeswap-libs/sdk'
+import { Currency, ETHER, Token } from '@passive-income/dpex-sdk'
 
 export function currencyId(currency: Currency): string {
   if (currency === ETHER) return 'BNB'

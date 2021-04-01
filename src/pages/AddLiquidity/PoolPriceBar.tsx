@@ -1,6 +1,6 @@
 import React from 'react'
-import { Currency, Percent, Price } from '@pancakeswap-libs/sdk'
-import { Text } from '@pancakeswap-libs/uikit'
+import { Currency, Percent, Price } from '@passive-income/dpex-sdk'
+import { Text } from '@passive-income/dpex-uikit'
 import { AutoColumn } from '../../components/Column'
 import { AutoRow } from '../../components/Row'
 import { ONE_BIPS } from '../../constants'

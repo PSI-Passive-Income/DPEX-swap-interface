@@ -1,6 +1,20 @@
-import { ChainId, JSBI, Percent, Token, WETH } from '@pancakeswap-libs/sdk'
+import { ChainId, JSBI, Percent, Token, WETH } from '@passive-income/dpex-sdk'
 
-export const ROUTER_ADDRESS = '0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F'
+const routerAddress = process.env && process.env.REACT_APP_ROUTER_ADDRESS ? process.env.REACT_APP_ROUTER_ADDRESS as string : null;
+export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
+  [ChainId.MAINNET]: routerAddress ?? "0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F",
+  [ChainId.BSCTESTNET]: routerAddress ?? "0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F",
+  [ChainId.GANACHETESTNET]: routerAddress ?? "0xC7EF7b9BC9318336d4469481f58f24313ca8F582",
+}
+
+const factoryAddress = process.env && process.env.REACT_APP_FACTORY_ADDRESS ? process.env.REACT_APP_FACTORY_ADDRESS as string : null;
+export const FACTORY_ADDRESS: { [chainId in ChainId]: string } = {
+  [ChainId.MAINNET]: factoryAddress ?? "0xBCfCcbde45cE874adCB698cC183deBcF17952812",
+  [ChainId.BSCTESTNET]: factoryAddress ?? "0xBCfCcbde45cE874adCB698cC183deBcF17952812",
+  [ChainId.GANACHETESTNET]: factoryAddress ?? "0x30cc30Ee699a7390EA887E15Bb90b3668D4308Ec",
+}
+
+export const INIT_CODE_HASH = process?.env?.REACT_APP_INIT_CODE_HASH ?? "0xbfbc1a019781124ea247e8e1e901cb86bbabe9eec8eac8aa5a60e5429e6d3da7";
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -29,6 +43,7 @@ export const ETH = new Token(
 const WETH_ONLY: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
   [ChainId.BSCTESTNET]: [WETH[ChainId.BSCTESTNET]],
+  [ChainId.GANACHETESTNET]: [WETH[ChainId.GANACHETESTNET]],
 }
 
 // used to construct intermediary pairs for trading
@@ -57,14 +72,27 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, BUSD, BTCB, USDT],
 }
 
+const psiAddress = process.env && process.env.REACT_APP_PSI_ADDRESS ? process.env.REACT_APP_PSI_ADDRESS as string : null;
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
   [ChainId.MAINNET]: [
     [
-      new Token(ChainId.MAINNET, '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82', 18, 'CAKE', 'PancakeSwap Token'),
-      new Token(ChainId.MAINNET, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'WBNB', 'Wrapped BNB'),
+      new Token(ChainId.MAINNET, psiAddress ?? '0x9A5d9c681Db43D9863e9279c800A39449B7e1d6f', 9, 'PSI', 'Passive Income'),
+      WETH[ChainId.MAINNET],
     ],
     [BUSD, USDT],
     [DAI, USDT],
+  ],
+  [ChainId.BSCTESTNET]: [
+    [
+      new Token(ChainId.BSCTESTNET, psiAddress ?? '0x066Bd99080eC62FE0E28bA687A53aC00794c17b6', 9, 'PSI', 'Passive Income'),
+      WETH[ChainId.BSCTESTNET],
+    ]
+  ],
+  [ChainId.GANACHETESTNET]: [
+    [
+      new Token(ChainId.GANACHETESTNET, psiAddress ?? '0xD30084E9d1271f803e26A0545E2D031013956D9E', 9, 'PSI', 'Passive Income'),
+      WETH[ChainId.GANACHETESTNET],
+    ]
   ],
 }
 

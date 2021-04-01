@@ -3,8 +3,9 @@ import { getAddress } from '@ethersproject/address'
 import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
-import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
-import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@pancakeswap-libs/sdk'
+// import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
+import DPEXRouterAbi from '@passive-income/dpex-peripheral/abi/contracts/interfaces/IDPexRouter.sol/IDPexRouter.json'
+import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@passive-income/dpex-sdk'
 import { ROUTER_ADDRESS } from '../constants'
 import { TokenAddressMap } from '../state/lists/hooks'
 
@@ -18,8 +19,9 @@ export function isAddress(value: any): string | false {
 }
 
 const BSCSCAN_PREFIXES: { [chainId in ChainId]: string } = {
-  56: '',
-  97: 'testnet.'
+  [ChainId.MAINNET]: '',
+  [ChainId.BSCTESTNET]: 'testnet.',
+  [ChainId.GANACHETESTNET]: 'ganache.'
 }
 
 export function getBscScanLink(chainId: ChainId, data: string, type: 'transaction' | 'token' | 'address'): string {
@@ -88,8 +90,8 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
 }
 
 // account is optional
-export function getRouterContract(_: number, library: Web3Provider, account?: string): Contract {
-  return getContract(ROUTER_ADDRESS, IUniswapV2Router02ABI, library, account)
+export function getRouterContract(chainId: ChainId, library: Web3Provider, account?: string): Contract {
+  return getContract(ROUTER_ADDRESS[chainId], DPEXRouterAbi, library, account)
 }
 
 export function escapeRegExp(string: string): string {

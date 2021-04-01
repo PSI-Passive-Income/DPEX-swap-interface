@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ThemeProvider as SCThemeProvider } from 'styled-components'
-import { light, dark } from '@pancakeswap-libs/uikit'
+import { light, dark } from '@passive-income/dpex-uikit'
 
 const CACHE_KEY = 'IS_DARK'
 
@@ -14,7 +14,7 @@ const ThemeContext = React.createContext<ThemeContextType>({ isDark: false, togg
 const ThemeContextProvider: React.FC = ({ children }) => {
   const [isDark, setIsDark] = useState(() => {
     const isDarkUserSetting = localStorage.getItem(CACHE_KEY)
-    return isDarkUserSetting ? JSON.parse(isDarkUserSetting) : false
+    return isDarkUserSetting ? JSON.parse(isDarkUserSetting) : true
   })
 
   const toggleTheme = () => {

@@ -1,4 +1,4 @@
-import { ConnectorNames } from '@pancakeswap-libs/uikit'
+import { ConnectorNames } from '@passive-income/dpex-uikit'
 import { Web3Provider } from '@ethersproject/providers'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
@@ -25,10 +25,10 @@ export function getNetworkLibrary(): Web3Provider {
 }
 
 export const injected = new InjectedConnector({
-  supportedChainIds: [56, 97],
+  supportedChainIds: [56, 97, 1337],
 })
 
-export const bscConnector = new BscConnector({ supportedChainIds: [56] })
+export const bscConnector = new BscConnector({ supportedChainIds: [56, 97] })
 
 // mainnet only
 export const walletconnect = new WalletConnectConnector({

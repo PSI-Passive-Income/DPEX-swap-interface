@@ -15,9 +15,10 @@ import { RedirectPathToSwapOnly } from './Swap/redirects'
 import { EN, allLanguages } from '../constants/localisation/languageCodes'
 import { LanguageContext } from '../hooks/LanguageContext'
 import { TranslationsContext } from '../hooks/TranslationsContext'
+import backgroundImage from './dpex_background.svg';
 
 import Menu from '../components/Menu'
-import useGetDocumentTitlePrice from '../hooks/useGetDocumentTitlePrice'
+// import useGetDocumentTitlePrice from '../hooks/useGetDocumentTitlePrice'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -37,22 +38,23 @@ const BodyWrapper = styled.div`
   overflow-x: hidden;
   z-index: 1;
   justify-content: center;
-  background-image: url('/images/group-pancake.svg');
+  background-image: url('${backgroundImage}');
+  background-position: center;
   background-repeat: no-repeat;
-  background-position: bottom 24px center;
-  background-size: 90%;
+  background-size: cover;
+  background-color: #040229;
 
   ${({ theme }) => theme.mediaQueries.xs} {
-    background-size: auto;
+    min-height: 100vh;
   }
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/arch-${({ theme }) => (theme.isDark ? 'dark' : 'light')}.svg'),
-      url('/images/left-pancake.svg'), url('/images/right-pancake.svg');
+    background-image: url('${backgroundImage}');
+    background-position: center;
     background-repeat: no-repeat;
-    background-position: center 420px, 10% 230px, 90% 230px;
-    background-size: contain, 266px, 266px;
-    min-height: 90vh;
+    background-size: cover;
+    background-color: #040229;
+    min-height: calc(100vh - 64px);
   }
 `
 
@@ -61,7 +63,7 @@ const Marginer = styled.div`
 `
 
 export default function App() {
-  const [selectedLanguage, setSelectedLanguage] = useState<any>(undefined)
+  const [selectedLanguage, setSelectedLanguage] = useState<any>(undefined) 
   const [translatedLanguage, setTranslatedLanguage] = useState<any>(undefined)
   const [translations, setTranslations] = useState<Array<any>>([])
   const apiKey = `${process.env.REACT_APP_CROWDIN_APIKEY}`
@@ -81,7 +83,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    const storedLangCode = localStorage.getItem('pancakeSwapLanguage')
+    const storedLangCode = localStorage.getItem('dpexLanguage')
     if (storedLangCode) {
       const storedLang = getStoredLang(storedLangCode)
       setSelectedLanguage(storedLang)
@@ -114,7 +116,7 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLanguage])
 
-  useGetDocumentTitlePrice()
+  // useGetDocumentTitlePrice()
 
   return (
     <Suspense fallback={null}>

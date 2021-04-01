@@ -1,6 +1,6 @@
 import React from 'react'
-import { Trade, TradeType } from '@pancakeswap-libs/sdk'
-import { Card, CardBody, Text } from '@pancakeswap-libs/uikit'
+import { Trade, TradeType } from '@passive-income/dpex-sdk'
+import { Card, CardBody, Text } from '@passive-income/dpex-uikit'
 import useI18n from 'hooks/useI18n'
 import { Field } from '../../state/swap/actions'
 import { useUserSlippageTolerance } from '../../state/user/hooks'
@@ -62,7 +62,7 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
             <QuestionHelper
               text={TranslateString(
                 230,
-                'For each trade a 0.2% fee is paid. 0.17% goes to liquidity providers and 0.03% goes to the PancakeSwap treasury.'
+                'For each trade a 0.3% fee is paid. 0.2% goes to liquidity providers and 0.1% is divided between PSI holders.'
               )}
             />
           </RowFixed>
