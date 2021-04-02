@@ -2,15 +2,15 @@ import { ChainId, JSBI, Percent, Token, WETH } from '@passive-income/dpex-sdk'
 
 const routerAddress = process.env && process.env.REACT_APP_ROUTER_ADDRESS ? process.env.REACT_APP_ROUTER_ADDRESS as string : null;
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
-  [ChainId.MAINNET]: routerAddress ?? "0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F",
-  [ChainId.BSCTESTNET]: routerAddress ?? "0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F",
+  [ChainId.MAINNET]: routerAddress ?? "0xa5cCA416d834C41f25b3A0EEEBA3D6D564968226",
+  [ChainId.BSCTESTNET]: routerAddress ?? "0x39A75Bc01FE4d90A03fD35faB6d2D1764744E889",
   [ChainId.GANACHETESTNET]: routerAddress ?? "0xC7EF7b9BC9318336d4469481f58f24313ca8F582",
 }
 
 const factoryAddress = process.env && process.env.REACT_APP_FACTORY_ADDRESS ? process.env.REACT_APP_FACTORY_ADDRESS as string : null;
 export const FACTORY_ADDRESS: { [chainId in ChainId]: string } = {
-  [ChainId.MAINNET]: factoryAddress ?? "0xBCfCcbde45cE874adCB698cC183deBcF17952812",
-  [ChainId.BSCTESTNET]: factoryAddress ?? "0xBCfCcbde45cE874adCB698cC183deBcF17952812",
+  [ChainId.MAINNET]: factoryAddress ?? "0xB39b145F35fe5f6D7BC65FA1cF41Fa1F5D854FC8",
+  [ChainId.BSCTESTNET]: factoryAddress ?? "0x1DeAFD0E3fa0C4088E3873494DBfC98CB76182B6",
   [ChainId.GANACHETESTNET]: factoryAddress ?? "0x30cc30Ee699a7390EA887E15Bb90b3668D4308Ec",
 }
 
