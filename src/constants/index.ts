@@ -14,7 +14,7 @@ export const FACTORY_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.GANACHETESTNET]: factoryAddress ?? "0x30cc30Ee699a7390EA887E15Bb90b3668D4308Ec",
 }
 
-export const INIT_CODE_HASH = process?.env?.REACT_APP_INIT_CODE_HASH ?? "0x54b665638f92b86b60e97aad6ac1f67d1c8d80e418e17f46840e1f59eaec1764";
+export const INIT_CODE_HASH = process?.env?.REACT_APP_INIT_CODE_HASH ?? "0xd0d4c4cd0848c93cb4fd1f498d7013ee6bfb25783ea21593d5834f5d250ece66";
 
 // a list of tokens by chain
 type ChainTokenList = {
