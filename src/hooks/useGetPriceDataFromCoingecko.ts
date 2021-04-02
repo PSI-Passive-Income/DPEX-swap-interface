@@ -12,8 +12,7 @@ const useGetPriceDataFromCoingecko = (id: string) => {
         
         const response = await fetch(finalApi)
         const res: any = await response.json()
-
-        console.log(res);
+        
         setData(res)
       } catch (error) {
         console.error('Unable to fetch price data:', error)
