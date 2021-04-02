@@ -3,7 +3,7 @@ import { ChainId, JSBI, Percent, Token, WETH } from '@passive-income/dpex-sdk'
 const routerAddress = process.env && process.env.REACT_APP_ROUTER_ADDRESS ? process.env.REACT_APP_ROUTER_ADDRESS as string : null;
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: routerAddress ?? "0xa5cCA416d834C41f25b3A0EEEBA3D6D564968226",
-  [ChainId.BSCTESTNET]: routerAddress ?? "0x39A75Bc01FE4d90A03fD35faB6d2D1764744E889",
+  [ChainId.BSCTESTNET]: routerAddress ?? "0x662D0c613FDB18767D53Ef46010392a537c571D2",
   [ChainId.GANACHETESTNET]: routerAddress ?? "0xC7EF7b9BC9318336d4469481f58f24313ca8F582",
 }
 
@@ -14,7 +14,7 @@ export const FACTORY_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.GANACHETESTNET]: factoryAddress ?? "0x30cc30Ee699a7390EA887E15Bb90b3668D4308Ec",
 }
 
-export const INIT_CODE_HASH = process?.env?.REACT_APP_INIT_CODE_HASH ?? "0xbfbc1a019781124ea247e8e1e901cb86bbabe9eec8eac8aa5a60e5429e6d3da7";
+export const INIT_CODE_HASH = process?.env?.REACT_APP_INIT_CODE_HASH ?? "0x54b665638f92b86b60e97aad6ac1f67d1c8d80e418e17f46840e1f59eaec1764";
 
 // a list of tokens by chain
 type ChainTokenList = {
