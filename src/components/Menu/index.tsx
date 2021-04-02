@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { BigNumber, formatFixed, parseFixed } from '@ethersproject/bignumber'
 import { Menu as UikitMenu} from '@passive-income/dpex-uikit'
 import { useWeb3React } from '@web3-react/core'
 import { allLanguages } from 'constants/localisation/languageCodes'
