@@ -126,7 +126,7 @@ const config: MenuEntry[] = [
       },
       {
         label: "Docs",
-        href: "https://docs.pancakeswap.finance",
+        href: "https://passiveincome.gitbook.io/whitepaper/",
       },
       {
         label: "Blog",
