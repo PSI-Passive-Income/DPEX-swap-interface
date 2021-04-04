@@ -3300,10 +3300,10 @@
     "@truffle/hdwallet-provider" "^1.2.1"
     dotenv "^8.2.0"
 
-"@passive-income/dpex-uikit@0.17.5":
-  version "0.17.5"
-  resolved "https://registry.yarnpkg.com/@passive-income/dpex-uikit/-/dpex-uikit-0.17.5.tgz#8dbe773aa68e850b83f58b0805964214500bcba0"
-  integrity sha512-ZR+mvMjVp3VW5251+oaTv4KX82M+GivHn+4PNrUCjnw8yLtF1nKVm2QtyogTcxDxiji0C+Wvh9xGOTfyv70Blg==
+"@passive-income/dpex-uikit@0.17.6":
+  version "0.17.6"
+  resolved "https://registry.yarnpkg.com/@passive-income/dpex-uikit/-/dpex-uikit-0.17.6.tgz#4c43ac68e1a7033feffa3931967d3a4ff3817dab"
+  integrity sha512-OrMdzu8E3/iOpOeFiyOczKD62OGuDfUEn5mr+cCUuUDyaIEYwNs4T571jV15//iRNDscuOZzQXs9O9t3QRQvhw==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
