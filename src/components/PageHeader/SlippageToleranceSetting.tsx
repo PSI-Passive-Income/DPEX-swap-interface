@@ -102,7 +102,7 @@ const SlippageToleranceSettings = ({ translateString }: SlippageToleranceSetting
 
             return (
               <Option key={predefinedValue}>
-                <Button variant={value === predefinedValue ? 'primary' : 'tertiary'} onClick={handleClick}>
+                <Button variant={value === predefinedValue ? 'primary' : 'secondary'} onClick={handleClick}>
                   {label}
                 </Button>
               </Option>

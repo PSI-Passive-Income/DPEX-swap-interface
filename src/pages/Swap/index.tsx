@@ -15,10 +15,9 @@ import confirmPriceImpactWithoutFee from 'components/swap/confirmPriceImpactWith
 import { ArrowWrapper, BottomGrouping, SwapCallbackError, Wrapper } from 'components/swap/styleds'
 import TradePrice from 'components/swap/TradePrice'
 import TokenWarningModal from 'components/TokenWarningModal'
-import SyrupWarningModal from 'components/SyrupWarningModal'
 import ProgressSteps from 'components/ProgressSteps'
 
-import { INITIAL_ALLOWED_SLIPPAGE } from 'constants/index'
+import { BASE_FACTORY_ADDRESS, INITIAL_ALLOWED_SLIPPAGE } from 'constants/index'
 import { useActiveWeb3React } from 'hooks'
 import { useCurrency } from 'hooks/Tokens'
 import { ApprovalState, useApproveCallbackFromTrade } from 'hooks/useApproveCallback'
@@ -46,8 +45,6 @@ const Swap = () => {
     useCurrency(loadedUrlParams?.outputCurrencyId),
   ]
   const [dismissTokenWarning, setDismissTokenWarning] = useState<boolean>(false)
-  const [isSyrup, setIsSyrup] = useState<boolean>(false)
-  const [syrupTransactionType, setSyrupTransactionType] = useState<string>('')
   const urlLoadedTokens: Token[] = useMemo(
     () => [loadedInputCurrency, loadedOutputCurrency]?.filter((c): c is Token => c instanceof Token) ?? [],
     [loadedInputCurrency, loadedOutputCurrency]
@@ -56,12 +53,7 @@ const Swap = () => {
     setDismissTokenWarning(true)
   }, [])
 
-  const handleConfirmSyrupWarning = useCallback(() => {
-    setIsSyrup(false)
-    setSyrupTransactionType('')
-  }, [])
-
-  const { account } = useActiveWeb3React()
+  const { account, chainId } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
 
   const [isExpertMode] = useExpertModeManager()
@@ -135,6 +127,9 @@ const Swap = () => {
     currencies[Field.INPUT] && currencies[Field.OUTPUT] && parsedAmounts[independentField]?.greaterThan(JSBI.BigInt(0))
   )
   const noRoute = !route
+
+  // check if the pair is on the psi dex
+  const notBaseFactory = chainId && route && route.pairs && route.pairs[0].factory !== BASE_FACTORY_ADDRESS[chainId];
 
   // check whether the user has approved the router on the input token
   const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage)
@@ -217,27 +212,12 @@ const Swap = () => {
     setSwapState((prevState) => ({ ...prevState, tradeToConfirm: trade }))
   }, [trade])
 
-  // This will check to see if the user has selected Syrup to either buy or sell.
-  // If so, they will be alerted with a warning message.
-  const checkForSyrup = useCallback(
-    (selected: string, purchaseType: string) => {
-      if (selected === 'syrup') {
-        setIsSyrup(true)
-        setSyrupTransactionType(purchaseType)
-      }
-    },
-    [setIsSyrup, setSyrupTransactionType]
-  )
-
   const handleInputSelect = useCallback(
     (inputCurrency) => {
       setApprovalSubmitted(false) // reset 2 step UI for approvals
       onCurrencySelection(Field.INPUT, inputCurrency)
-      if (inputCurrency.symbol.toLowerCase() === 'syrup') {
-        checkForSyrup(inputCurrency.symbol.toLowerCase(), 'Selling')
-      }
     },
-    [onCurrencySelection, setApprovalSubmitted, checkForSyrup]
+    [onCurrencySelection, setApprovalSubmitted]
   )
 
   const handleMaxInput = useCallback(() => {
@@ -249,11 +229,8 @@ const Swap = () => {
   const handleOutputSelect = useCallback(
     (outputCurrency) => {
       onCurrencySelection(Field.OUTPUT, outputCurrency)
-      if (outputCurrency.symbol.toLowerCase() === 'syrup') {
-        checkForSyrup(outputCurrency.symbol.toLowerCase(), 'Buying')
-      }
     },
-    [onCurrencySelection, checkForSyrup]
+    [onCurrencySelection]
   )
 
   return (
@@ -262,11 +239,6 @@ const Swap = () => {
         isOpen={urlLoadedTokens.length > 0 && !dismissTokenWarning}
         tokens={urlLoadedTokens}
         onConfirm={handleConfirmTokenWarning}
-      />
-      <SyrupWarningModal
-        isOpen={isSyrup}
-        transactionType={syrupTransactionType}
-        onConfirm={handleConfirmSyrupWarning}
       />
       <CardNav />
       <AppBody>
@@ -464,6 +436,14 @@ const Swap = () => {
               {showApproveFlow && <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />}
               {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
             </BottomGrouping>
+
+            {notBaseFactory && userHasSpecifiedInputOutput ? (
+              <BottomGrouping>
+                <GreyCard style={{ textAlign: 'center' }}>
+                  <Text mb="4px">{TranslateString(1194, 'PSI Dex has insufficient liquidity for this trade. Be the first to add it on the liquidity tab!')}</Text>
+                </GreyCard>
+              </BottomGrouping>
+            ) : null}
           </CardBody>
         </Wrapper>
       </AppBody>

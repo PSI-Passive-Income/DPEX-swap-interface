@@ -35,6 +35,7 @@ type EstimatedSwapCall = SuccessfulCall | FailedCall
 /**
  * Returns the swap calls that can be used to make the trade
  * @param trade trade to execute
+ * @param factory factory that will be used
  * @param allowedSlippage user allowed slippage
  * @param deadline the deadline for the trade
  * @param recipientAddressOrName

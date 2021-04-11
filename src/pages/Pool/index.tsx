@@ -19,6 +19,7 @@ import { Dots } from 'components/swap/styleds'
 import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import AppBody from '../AppBody'
+import { BASE_FACTORY_ADDRESS } from '../../constants'
 
 export default function Pool() {
   const theme = useContext(ThemeContext)
@@ -55,7 +56,8 @@ export default function Pool() {
   const v2IsLoading =
     !liquidityTokensWithBalances || fetchingV2PairBalances || v2Pairs?.length < liquidityTokensWithBalances.length || v2Pairs?.some((V2Pair) => !V2Pair)
 
-  const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair))
+  // filter if pair is set and if the liquidity is provided on psi dex
+  const allV2PairsWithLiquidity = v2Pairs.map(([, pair]) => pair).filter((v2Pair): v2Pair is Pair => Boolean(v2Pair && chainId && v2Pair.factory === BASE_FACTORY_ADDRESS[chainId]))
 
   return (
     <>

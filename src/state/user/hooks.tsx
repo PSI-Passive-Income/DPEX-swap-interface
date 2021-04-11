@@ -2,7 +2,7 @@ import { ChainId, Pair, Token } from '@passive-income/dpex-sdk'
 import flatMap from 'lodash.flatmap'
 import { useCallback, useMemo } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
-import { FACTORY_ADDRESS, INIT_CODE_HASH, BASES_TO_TRACK_LIQUIDITY_FOR, PINNED_PAIRS } from '../../constants'
+import { BASE_FACTORY_ADDRESS, BASE_INIT_CODE_HASH, BASES_TO_TRACK_LIQUIDITY_FOR, PINNED_PAIRS } from '../../constants'
 
 import { useActiveWeb3React } from '../../hooks'
 // eslint-disable-next-line import/no-cycle
@@ -192,7 +192,7 @@ export function usePairAdder(): (pair: Pair) => void {
  * @param tokenB the other token
  */
 export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token], chainId: ChainId): Token {
-  return new Token(tokenA.chainId, Pair.getAddress(FACTORY_ADDRESS[chainId], INIT_CODE_HASH, tokenA, tokenB), 18, 'DPEX-LP', 'Decentralized Passive Exchange Pair')
+  return new Token(tokenA.chainId, Pair.getAddress(BASE_FACTORY_ADDRESS[chainId], BASE_INIT_CODE_HASH, tokenA, tokenB), 18, 'DPEX-LP', 'Decentralized Passive Exchange Pair')
 }
 
 /**

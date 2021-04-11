@@ -36,12 +36,13 @@ function isValidMethodArgs(x: unknown): x is MethodArgs | undefined {
 }
 
 interface CallResult {
+  readonly address: string | undefined
   readonly valid: boolean
   readonly data: string | undefined
   readonly blockNumber: number | undefined
 }
 
-const INVALID_RESULT: CallResult = { valid: false, blockNumber: undefined, data: undefined }
+const INVALID_RESULT: CallResult = { address: undefined, valid: false, blockNumber: undefined, data: undefined }
 
 // use this options object
 export const NEVER_RELOAD: ListenerOptions = {
@@ -101,13 +102,14 @@ function useCallsData(calls: (Call | undefined)[], options?: ListenerOptions): C
         const result = callResults[chainId]?.[toCallKey(call)]
         const data = result?.data && result?.data !== '0x' ? result.data : null
 
-        return { valid: true, data, blockNumber: result?.blockNumber }
+        return { address: call.address, valid: true, data, blockNumber: result?.blockNumber }
       }),
     [callResults, calls, chainId]
   )
 }
 
 interface CallState {
+  readonly address: string | undefined
   readonly valid: boolean
   // the result, or undefined if loading or errored/no data
   readonly result: Result | undefined
@@ -119,8 +121,8 @@ interface CallState {
   readonly error: boolean
 }
 
-const INVALID_CALL_STATE: CallState = { valid: false, result: undefined, loading: false, syncing: false, error: false }
-const LOADING_CALL_STATE: CallState = { valid: true, result: undefined, loading: true, syncing: true, error: false }
+const INVALID_CALL_STATE: CallState = { address: undefined, valid: false, result: undefined, loading: false, syncing: false, error: false }
+const LOADING_CALL_STATE: CallState = { address: undefined, valid: true, result: undefined, loading: true, syncing: true, error: false }
 
 function toCallState(
   callResult: CallResult | undefined,
@@ -142,6 +144,7 @@ function toCallState(
     } catch (error) {
       console.error('Result data parsing failed', fragment, data)
       return {
+        address: callResult.address,
         valid: true,
         loading: false,
         error: true,
@@ -151,6 +154,7 @@ function toCallState(
     }
   }
   return {
+    address: callResult.address,
     valid: true,
     loading: false,
     syncing,

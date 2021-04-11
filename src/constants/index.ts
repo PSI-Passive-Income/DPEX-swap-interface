@@ -1,20 +1,29 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@passive-income/dpex-sdk'
 
-const routerAddress = process.env && process.env.REACT_APP_ROUTER_ADDRESS ? process.env.REACT_APP_ROUTER_ADDRESS as string : null;
+const routerAddress = process?.env?.REACT_APP_ROUTER_ADDRESS ? process.env.REACT_APP_ROUTER_ADDRESS as string : null;
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
-  [ChainId.MAINNET]: routerAddress ?? "0xa5cCA416d834C41f25b3A0EEEBA3D6D564968226",
+  [ChainId.MAINNET]: routerAddress ?? "0xeEdF12C62b8930EC7a1c729616870898D5E8c586",
   [ChainId.BSCTESTNET]: routerAddress ?? "0x662D0c613FDB18767D53Ef46010392a537c571D2",
   [ChainId.GANACHETESTNET]: routerAddress ?? "0xC7EF7b9BC9318336d4469481f58f24313ca8F582",
 }
 
-const factoryAddress = process.env && process.env.REACT_APP_FACTORY_ADDRESS ? process.env.REACT_APP_FACTORY_ADDRESS as string : null;
-export const FACTORY_ADDRESS: { [chainId in ChainId]: string } = {
-  [ChainId.MAINNET]: factoryAddress ?? "0xB39b145F35fe5f6D7BC65FA1cF41Fa1F5D854FC8",
+const factoryAddress = process?.env?.REACT_APP_FACTORY_ADDRESS ? process.env.REACT_APP_FACTORY_ADDRESS as string : null;
+export const BASE_INIT_CODE_HASH = process?.env?.REACT_APP_INIT_CODE_HASH ?? "0x8ce3d8395a2762e69b9d143e8364b606484fca5a5826adb06d61642abebe6a0f";
+export const BASE_FACTORY_ADDRESS: { [chainId in ChainId]: string } = {
+  [ChainId.MAINNET]: factoryAddress ?? "0x92Be203e0dfb40c1a1F937a36929E02856257A2e",
   [ChainId.BSCTESTNET]: factoryAddress ?? "0x1DeAFD0E3fa0C4088E3873494DBfC98CB76182B6",
   [ChainId.GANACHETESTNET]: factoryAddress ?? "0x30cc30Ee699a7390EA887E15Bb90b3668D4308Ec",
 }
-
-export const INIT_CODE_HASH = process?.env?.REACT_APP_INIT_CODE_HASH ?? "0xd0d4c4cd0848c93cb4fd1f498d7013ee6bfb25783ea21593d5834f5d250ece66";
+export const FACTORY_ADDRESSES: { [chainId in ChainId]: { [key: string]: string }} = {
+  [ChainId.MAINNET]: {[BASE_FACTORY_ADDRESS[ChainId.MAINNET]]: BASE_INIT_CODE_HASH},
+  [ChainId.BSCTESTNET]: {[BASE_FACTORY_ADDRESS[ChainId.BSCTESTNET]]: BASE_INIT_CODE_HASH},
+  [ChainId.GANACHETESTNET]: {[BASE_FACTORY_ADDRESS[ChainId.GANACHETESTNET]]: BASE_INIT_CODE_HASH},
+}
+if (process?.env?.REACT_APP_FACTORY_ADDRESS_PANCAKESWAP && process?.env?.REACT_APP_INIT_CODE_HASH_PANCAKESWAP) {
+  FACTORY_ADDRESSES[ChainId.MAINNET][process.env.REACT_APP_FACTORY_ADDRESS_PANCAKESWAP] = process.env.REACT_APP_INIT_CODE_HASH_PANCAKESWAP
+  FACTORY_ADDRESSES[ChainId.BSCTESTNET][process.env.REACT_APP_FACTORY_ADDRESS_PANCAKESWAP] = process.env.REACT_APP_INIT_CODE_HASH_PANCAKESWAP
+  FACTORY_ADDRESSES[ChainId.GANACHETESTNET][process.env.REACT_APP_FACTORY_ADDRESS_PANCAKESWAP] = process.env.REACT_APP_INIT_CODE_HASH_PANCAKESWAP
+}
 
 // a list of tokens by chain
 type ChainTokenList = {

@@ -5,7 +5,7 @@ import IDPexPairABI from '@passive-income/dpex-swap-core/abi/contracts/interface
 import { Interface } from '@ethersproject/abi'
 import { useActiveWeb3React } from '../hooks'
 
-import { FACTORY_ADDRESS, INIT_CODE_HASH } from '../constants'
+import { FACTORY_ADDRESSES } from '../constants'
 import { useMultipleContractSingleData } from '../state/multicall/hooks'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
 
@@ -30,39 +30,53 @@ export function usePairs(currencies: [Currency | undefined, Currency | undefined
     [chainId, currencies]
   )
 
-  const pairAddresses = useMemo(
+  const pairTokens = useMemo(
     () => {
       if (tokens && chainId) {
         return tokens.map(([tokenA, tokenB]) => {
-          return tokenA && tokenB && !tokenA.equals(tokenB) ? Pair.getAddress(FACTORY_ADDRESS[chainId], INIT_CODE_HASH, tokenA, tokenB) : undefined
-        });
+          return tokenA && tokenB && !tokenA.equals(tokenB) ? Object.entries(FACTORY_ADDRESSES[chainId]).map(([factory, initCodeHash]) => {
+            return {
+              pairAddress: Pair.getAddress(factory, initCodeHash, tokenA, tokenB),
+              factory,
+              initCodeHash,
+              tokenA,
+              tokenB
+            }
+          }) : undefined
+        }).flat().reduce((address, value) => {
+          if (value !== undefined) address[value.pairAddress] = value;
+          return address;
+        }, {})
       }
-      return [];
+      return {};
     }, [chainId, tokens]
   )
-
-  const results = useMultipleContractSingleData(pairAddresses, PAIR_INTERFACE, 'getReserves')
+  
+  const results = useMultipleContractSingleData(Object.entries(pairTokens).map(([pair]) => pair), PAIR_INTERFACE, 'getReserves')
 
   return useMemo(() => {
-    return results.map((result, i) => {
+    return results.map((result) => {
       const { result: reserves, loading } = result
-      const tokenA = tokens[i][0]
-      const tokenB = tokens[i][1]
-
       if (loading) return [PairState.LOADING, null]
-      if (!tokenA || !tokenB || tokenA.equals(tokenB) || !chainId) return [PairState.INVALID, null]
+      if (!chainId || !result.address || !pairTokens[result.address]) return [PairState.INVALID, null]
+
+      const pairToken = pairTokens[result.address]
+      const {tokenA, tokenB} = pairToken
+      
+      if (!tokenA || !tokenB || tokenA.equals(tokenB)) return [PairState.INVALID, null]
       if (!reserves) return [PairState.NOT_EXISTS, null]
       const { reserve0, reserve1 } = reserves
       const [token0, token1] = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA]
 
       return [
         PairState.EXISTS,
-        new Pair(new TokenAmount(token0, reserve0.toString()), new TokenAmount(token1, reserve1.toString()), FACTORY_ADDRESS[chainId], INIT_CODE_HASH)
+        new Pair(new TokenAmount(token0, reserve0.toString()), new TokenAmount(token1, reserve1.toString()), pairToken.factory, pairToken.initCodeHash)
       ];
     })
-  }, [results, tokens, chainId])
+  }, [results, chainId, pairTokens])
 }
 
 export function usePair(tokenA?: Currency, tokenB?: Currency): [PairState, Pair | null] {
-  return usePairs([[tokenA, tokenB]])[0]
+  const pairs = usePairs([[tokenA, tokenB]])
+  return pairs && pairs.length > 0 ? pairs[0] : [PairState.NOT_EXISTS, null]
 }

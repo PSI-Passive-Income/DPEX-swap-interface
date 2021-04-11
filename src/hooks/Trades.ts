@@ -2,7 +2,7 @@ import { Currency, CurrencyAmount, Pair, Token, Trade } from '@passive-income/dp
 import flatMap from 'lodash.flatmap'
 import { useMemo } from 'react'
 
-import { FACTORY_ADDRESS, INIT_CODE_HASH, BASES_TO_CHECK_TRADES_AGAINST, CUSTOM_BASES } from '../constants'
+import { BASES_TO_CHECK_TRADES_AGAINST, CUSTOM_BASES } from '../constants'
 import { PairState, usePairs } from '../data/Reserves'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
 
@@ -85,33 +85,31 @@ function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
  * Returns the best trade for the exact amount of tokens in to the given token out
  */
 export function useTradeExactIn(currencyAmountIn?: CurrencyAmount, currencyOut?: Currency): Trade | null {
-  const { chainId } = useActiveWeb3React()
   const allowedPairs = useAllCommonPairs(currencyAmountIn?.currency, currencyOut)
   
   return useMemo(() => {
-    if (currencyAmountIn && currencyOut && allowedPairs.length > 0 && chainId) {
+    if (currencyAmountIn && currencyOut && allowedPairs.length > 0) {
       return (
-        Trade.bestTradeExactIn(allowedPairs, currencyAmountIn, currencyOut, { maxHops: 3, maxNumResults: 1 }, FACTORY_ADDRESS[chainId], INIT_CODE_HASH)[0] ?? null
+        Trade.bestTradeExactIn(allowedPairs, currencyAmountIn, currencyOut, { maxHops: 3, maxNumResults: 1 })[0] ?? null
       )
     }
     return null
-  }, [allowedPairs, currencyAmountIn, currencyOut, chainId])
+  }, [allowedPairs, currencyAmountIn, currencyOut])
 }
 
 /**
  * Returns the best trade for the token in to the exact amount of token out
  */
 export function useTradeExactOut(currencyIn?: Currency, currencyAmountOut?: CurrencyAmount): Trade | null {
-  const { chainId } = useActiveWeb3React()
   const allowedPairs = useAllCommonPairs(currencyIn, currencyAmountOut?.currency)
 
   return useMemo(() => {
-    if (currencyIn && currencyAmountOut && allowedPairs.length > 0 && chainId) {
+    if (currencyIn && currencyAmountOut && allowedPairs.length > 0) {
       return (
-        Trade.bestTradeExactOut(allowedPairs, currencyIn, currencyAmountOut, { maxHops: 3, maxNumResults: 1 }, FACTORY_ADDRESS[chainId], INIT_CODE_HASH)[0] ??
+        Trade.bestTradeExactOut(allowedPairs, currencyIn, currencyAmountOut, { maxHops: 3, maxNumResults: 1 })[0] ??
         null
       )
     }
     return null
-  }, [allowedPairs, currencyIn, currencyAmountOut, chainId])
+  }, [allowedPairs, currencyIn, currencyAmountOut])
 }

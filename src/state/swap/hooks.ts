@@ -16,7 +16,7 @@ import { SwapState } from './reducer'
 
 import { useUserSlippageTolerance } from '../user/hooks'
 import { computeSlippageAdjustedAmounts } from '../../utils/prices'
-import { ROUTER_ADDRESS, FACTORY_ADDRESS } from '../../constants'
+import { ROUTER_ADDRESS, FACTORY_ADDRESSES } from '../../constants'
 
 export function useSwapState(): AppState['swap'] {
   return useSelector<AppState, AppState['swap']>((state) => state.swap)
@@ -165,7 +165,7 @@ export function useDerivedSwapInfo(): {
   }
 
   const badRecipientAddresses = BAD_RECIPIENT_ADDRESSES;
-  if (chainId) badRecipientAddresses.push(...[ROUTER_ADDRESS[chainId], FACTORY_ADDRESS[chainId]]);
+  if (chainId) badRecipientAddresses.push(...[ROUTER_ADDRESS[chainId], ...Object.keys(FACTORY_ADDRESSES[chainId]).map(([factory]) => factory)]);
 
   const formattedTo = isAddress(to)
   if (!to || !formattedTo) {

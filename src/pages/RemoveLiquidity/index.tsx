@@ -123,7 +123,7 @@ export default function RemoveLiquidity({
       { name: 'verifyingContract', type: 'address' },
     ]
     const domain = {
-      name: 'DPEX LPs',
+      name: 'Decentralized Passive Exchange Pair',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,
@@ -487,28 +487,28 @@ export default function RemoveLiquidity({
                       </Flex>
                       <Flex justifyContent="space-around">
                         <Button
-                          variant="tertiary"
+                          variant="primary"
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '25')}
                         >
                           25%
                         </Button>
                         <Button
-                          variant="tertiary"
+                          variant="primary"
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '50')}
                         >
                           50%
                         </Button>
                         <Button
-                          variant="tertiary"
+                          variant="primary"
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '75')}
                         >
                           75%
                         </Button>
                         <Button
-                          variant="tertiary"
+                          variant="primary"
                           scale="sm"
                           onClick={() => onUserInput(Field.LIQUIDITY_PERCENT, '100')}
                         >

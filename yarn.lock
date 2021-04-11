@@ -3263,10 +3263,24 @@
     hardhat-dependency-compiler "^1.1.1"
     hardhat-tracer "^1.0.0-alpha.2"
 
-"@passive-income/dpex-sdk@3.0.13":
-  version "3.0.13"
-  resolved "https://registry.yarnpkg.com/@passive-income/dpex-sdk/-/dpex-sdk-3.0.13.tgz#652c3a2b0c2dc111072d8df7dc6905a9e2374e79"
-  integrity sha512-/JogwHuSN8yiey1/A0eIIHnm2IWbvfirNFHlX63wsmjMu2C1xecRdrNwMDCTmATM9R+wvaQ0ae2ihuaOnzYVhw==
+"@passive-income/dpex-peripheral@1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@passive-income/dpex-peripheral/-/dpex-peripheral-1.1.5.tgz#c095f45f2ddfcf0aab2a40fcb51dc1aa70ca1a33"
+  integrity sha512-VFg5pYDKo7AfbqYFzCgGL670ktxy5H884sazgIU+TJR+DjjU20H5nSnsoi7MMdFQSYFLSredPTjS0E4y0NKvdA==
+  dependencies:
+    "@openzeppelin/contracts" "^3.3.0-solc-0.7"
+    "@openzeppelin/contracts-upgradeable" "^3.3.0-solc-0.7"
+    "@openzeppelin/test-helpers" "^0.5.10"
+    "@passive-income/dpex-swap-core" "~0.1.9"
+    "@passive-income/psi-contracts" "~1.0.8"
+    "@truffle/hdwallet-provider" "^1.2.1"
+    "@uniswap/lib" "1.1.1"
+    dotenv "^8.2.0"
+
+"@passive-income/dpex-sdk@3.0.14":
+  version "3.0.14"
+  resolved "https://registry.yarnpkg.com/@passive-income/dpex-sdk/-/dpex-sdk-3.0.14.tgz#59a9b9279b609598955b30bc46f651f950ed5d17"
+  integrity sha512-scBTVMIyGb/WpE21YpxJReDSFJXcvt0Q8IyHPdDpxQM9zuYdI5cIK8BDQPiVfzxrZPTeCX6V7KiPj0wFSD8kmg==
   dependencies:
     "@passive-income/dpex-swap-core" "^0.1.7"
     big.js "^5.2.2"
@@ -3276,10 +3290,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@passive-income/dpex-swap-core@0.1.8", "@passive-income/dpex-swap-core@~0.1.8":
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/@passive-income/dpex-swap-core/-/dpex-swap-core-0.1.8.tgz#7c18a148bc2b4d0fbc83e858cc73ab7b2790f614"
-  integrity sha512-iKXSeAzmS7M++YUQmffbhlNbxRCjpwdQWeruRtzpQnxrBP1FevPXFqcpmFSKgYyhGV4IufLjm1gLb9PdUy1uSA==
+"@passive-income/dpex-swap-core@0.1.9", "@passive-income/dpex-swap-core@~0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@passive-income/dpex-swap-core/-/dpex-swap-core-0.1.9.tgz#737d4dec000c280f72206a7e25b3c39d641bad3b"
+  integrity sha512-qwUoRvvjFRaNDgo6VO8zAahq8jexPCdc41+EbEAiRq7LBMuBCXg8Dy6DNIJ9lXHS+qjqxHZflXv8Y9tX49jH+g==
   dependencies:
     "@openzeppelin/contracts" "^3.3.0-solc-0.7"
     "@openzeppelin/contracts-upgradeable" "^3.3.0-solc-0.7"
@@ -3292,6 +3306,18 @@
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@passive-income/dpex-swap-core/-/dpex-swap-core-0.1.7.tgz#47eed901b423a3d6c460f77ff6ca8a54be70f05f"
   integrity sha512-TQmBP9oLsKK5YwdH5erT8ajV85v5uDoG79jrCBRECj/eNVwfEnFql6fNU0U2yxn2FqyGpVW17vuoCTW81LfMag==
+  dependencies:
+    "@openzeppelin/contracts" "^3.3.0-solc-0.7"
+    "@openzeppelin/contracts-upgradeable" "^3.3.0-solc-0.7"
+    "@openzeppelin/test-helpers" "^0.5.10"
+    "@passive-income/psi-contracts" "~1.0.2"
+    "@truffle/hdwallet-provider" "^1.2.1"
+    dotenv "^8.2.0"
+
+"@passive-income/dpex-swap-core@~0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@passive-income/dpex-swap-core/-/dpex-swap-core-0.1.8.tgz#7c18a148bc2b4d0fbc83e858cc73ab7b2790f614"
+  integrity sha512-iKXSeAzmS7M++YUQmffbhlNbxRCjpwdQWeruRtzpQnxrBP1FevPXFqcpmFSKgYyhGV4IufLjm1gLb9PdUy1uSA==
   dependencies:
     "@openzeppelin/contracts" "^3.3.0-solc-0.7"
     "@openzeppelin/contracts-upgradeable" "^3.3.0-solc-0.7"
@@ -3334,6 +3360,22 @@
     "@openzeppelin/contracts-upgradeable" "^3.3.0-solc-0.7"
     "@openzeppelin/test-helpers" "^0.5.10"
     "@passive-income/dpex-peripheral" "1.1.0"
+    "@truffle/hdwallet-provider" "^1.2.1"
+    "@uniswap/lib" "~4.0.1-alpha"
+    dotenv "^8.2.0"
+    truffle "^5.1.62"
+    truffle-flattener "^1.5.0"
+    truffle-hdwallet-provider-privkey "^0.3.0"
+
+"@passive-income/psi-contracts@~1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@passive-income/psi-contracts/-/psi-contracts-1.0.8.tgz#c56d6ec9dc325283cd930334ec2624692c536470"
+  integrity sha512-WoVgQlLkvsB6Gna4drLXUHm/mg8iNZ9DNmdugQhwUPx/Rbk/pB0N3ru00ezdbQ87nGYcVR7YM0DqVwefZI8sXA==
+  dependencies:
+    "@openzeppelin/contracts" "^3.3.0-solc-0.7"
+    "@openzeppelin/contracts-upgradeable" "^3.3.0-solc-0.7"
+    "@openzeppelin/test-helpers" "^0.5.10"
+    "@passive-income/dpex-peripheral" "1.1.3"
     "@truffle/hdwallet-provider" "^1.2.1"
     "@uniswap/lib" "~4.0.1-alpha"
     dotenv "^8.2.0"
