@@ -8,7 +8,7 @@
     "@crowdin/crowdin-api-client": "^1.8.16",
     "@ethersproject/experimental": "^5.0.1",
     "@passive-income/dpex-sdk": "3.0.14",
-    "@passive-income/dpex-uikit": "0.17.6",
+    "@passive-income/dpex-uikit": "0.17.7",
     "@passive-income/dpex-peripheral": "1.1.5",
     "@passive-income/dpex-swap-core": "0.1.9",
     "@popperjs/core": "^2.4.4",

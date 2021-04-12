@@ -440,7 +440,7 @@ const Swap = () => {
             {notBaseFactory && userHasSpecifiedInputOutput ? (
               <BottomGrouping>
                 <GreyCard style={{ textAlign: 'center' }}>
-                  <Text mb="4px">{TranslateString(1194, 'PSI Dex has insufficient liquidity for this trade. Be the first to add it on the liquidity tab!')}</Text>
+                  <Text mb="4px">{TranslateString(1194, 'PSI Dex has insufficient liquidity for this trade so we are falling back to another dex. Be the first to add liquidity to PSI Dex for this pair on the liquidity tab!')}</Text>
                 </GreyCard>
               </BottomGrouping>
             ) : null}
