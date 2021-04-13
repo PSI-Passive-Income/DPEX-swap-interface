@@ -3277,10 +3277,10 @@
     "@uniswap/lib" "1.1.1"
     dotenv "^8.2.0"
 
-"@passive-income/dpex-sdk@3.0.14":
-  version "3.0.14"
-  resolved "https://registry.yarnpkg.com/@passive-income/dpex-sdk/-/dpex-sdk-3.0.14.tgz#59a9b9279b609598955b30bc46f651f950ed5d17"
-  integrity sha512-scBTVMIyGb/WpE21YpxJReDSFJXcvt0Q8IyHPdDpxQM9zuYdI5cIK8BDQPiVfzxrZPTeCX6V7KiPj0wFSD8kmg==
+"@passive-income/dpex-sdk@3.0.15":
+  version "3.0.15"
+  resolved "https://registry.yarnpkg.com/@passive-income/dpex-sdk/-/dpex-sdk-3.0.15.tgz#331b8fdf50bef5ca0c29cf77902aeef5479a1432"
+  integrity sha512-x6s+JxwNHkVGV5yVl/AbZcQbmwX5ebO4REEmw8eZUxRj2B/Zz9kJmcKdB8CVbbfMap1PQqOt/K6z1VIN+sn07A==
   dependencies:
     "@passive-income/dpex-swap-core" "^0.1.7"
     big.js "^5.2.2"

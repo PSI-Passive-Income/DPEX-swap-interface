@@ -13,7 +13,7 @@
     {
       "name": "WBNB Token",
       "symbol": "WBNB",
-      "address": "0xaE8E19eFB41e7b96815649A6a60785e1fbA84C1e",
+      "address": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://psidex.passive-income.io/images/coins/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c.png"
@@ -21,7 +21,7 @@
     {
       "name": "WBNB Token",
       "symbol": "WBNB",
-      "address": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+      "address": "0xae13d989dac2f0debff460ac112a837c89baa7cd",
       "chainId": 97,
       "decimals": 18,
       "logoURI": "https://psidex.passive-income.io/images/coins/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c.png"

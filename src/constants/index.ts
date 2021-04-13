@@ -3,7 +3,7 @@ import { ChainId, JSBI, Percent, Token, WETH } from '@passive-income/dpex-sdk'
 const routerAddress = process?.env?.REACT_APP_ROUTER_ADDRESS ? process.env.REACT_APP_ROUTER_ADDRESS as string : null;
 export const ROUTER_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: routerAddress ?? "0xeEdF12C62b8930EC7a1c729616870898D5E8c586",
-  [ChainId.BSCTESTNET]: routerAddress ?? "0x662D0c613FDB18767D53Ef46010392a537c571D2",
+  [ChainId.BSCTESTNET]: routerAddress ?? "0xF561518cDaE1d0795e8077730aD5A28096cC6a5F",
   [ChainId.GANACHETESTNET]: routerAddress ?? "0xC7EF7b9BC9318336d4469481f58f24313ca8F582",
 }
 
@@ -11,7 +11,7 @@ const factoryAddress = process?.env?.REACT_APP_FACTORY_ADDRESS ? process.env.REA
 export const BASE_INIT_CODE_HASH = process?.env?.REACT_APP_INIT_CODE_HASH ?? "0x8ce3d8395a2762e69b9d143e8364b606484fca5a5826adb06d61642abebe6a0f";
 export const BASE_FACTORY_ADDRESS: { [chainId in ChainId]: string } = {
   [ChainId.MAINNET]: factoryAddress ?? "0x92Be203e0dfb40c1a1F937a36929E02856257A2e",
-  [ChainId.BSCTESTNET]: factoryAddress ?? "0x1DeAFD0E3fa0C4088E3873494DBfC98CB76182B6",
+  [ChainId.BSCTESTNET]: factoryAddress ?? "0x4FA3c5c24c55ED946B304F72D33FF24835fb2aB6",
   [ChainId.GANACHETESTNET]: factoryAddress ?? "0x30cc30Ee699a7390EA887E15Bb90b3668D4308Ec",
 }
 export const FACTORY_ADDRESSES: { [chainId in ChainId]: { [key: string]: string }} = {
@@ -59,6 +59,7 @@ const WETH_ONLY: ChainTokenList = {
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, BUSD, BTCB, USDT, UST, ETH],
+  [ChainId.BSCTESTNET]: [...WETH_ONLY[ChainId.BSCTESTNET]],
 }
 
 /**
@@ -67,18 +68,21 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
  */
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
   [ChainId.MAINNET]: {},
+  [ChainId.BSCTESTNET]: {},
 }
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, BUSD, USDT],
+  [ChainId.BSCTESTNET]: [...WETH_ONLY[ChainId.BSCTESTNET]],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
   [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, BUSD, BTCB, USDT],
+  [ChainId.BSCTESTNET]: [...WETH_ONLY[ChainId.BSCTESTNET]],
 }
 
 const psiAddress = process.env && process.env.REACT_APP_PSI_ADDRESS ? process.env.REACT_APP_PSI_ADDRESS as string : null;
@@ -88,6 +92,10 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
       new Token(ChainId.MAINNET, psiAddress ?? '0x9A5d9c681Db43D9863e9279c800A39449B7e1d6f', 9, 'PSI', 'Passive Income'),
       WETH[ChainId.MAINNET],
     ],
+    [
+      new Token(ChainId.MAINNET, '0x75d8b48342149ff7f7f1786e6f8b839ca669e4cf', 18, 'INC', 'Income'),
+      WETH[ChainId.MAINNET],
+    ],
     [BUSD, USDT],
     [DAI, USDT],
   ],
@@ -95,7 +103,11 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
     [
       new Token(ChainId.BSCTESTNET, psiAddress ?? '0x066Bd99080eC62FE0E28bA687A53aC00794c17b6', 9, 'PSI', 'Passive Income'),
       WETH[ChainId.BSCTESTNET],
-    ]
+    ],
+    [
+      new Token(ChainId.BSCTESTNET, '0x75d8b48342149ff7f7f1786e6f8b839ca669e4cf', 18, 'INC', 'Income'),
+      WETH[ChainId.BSCTESTNET],
+    ],
   ],
   [ChainId.GANACHETESTNET]: [
     [
