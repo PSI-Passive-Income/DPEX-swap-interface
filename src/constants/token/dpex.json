@@ -53,10 +53,10 @@
     {
       "name": "Income",
       "symbol": "INC",
-      "address": "0x75d8b48342149ff7f7f1786e6f8b839ca669e4cf",
+      "address": "0xDc3890618bd71d3eF3eC18BB14a510c0dA528947",
       "chainId": 56,
       "decimals": 18,
-      "logoURI": "https://psidex.passive-income.io/images/coins/0x75d8b48342149ff7f7f1786e6f8b839ca669e4cf.png"
+      "logoURI": "https://psidex.passive-income.io/images/coins/0xdc3890618bd71d3ef3ec18bb14a510c0da528947.png"
     },
     {
       "name": "Income",
@@ -64,7 +64,7 @@
       "address": "0x75d8b48342149ff7f7f1786e6f8b839ca669e4cf",
       "chainId": 97,
       "decimals": 18,
-      "logoURI": "https://psidex.passive-income.io/images/coins/0x75d8b48342149ff7f7f1786e6f8b839ca669e4cf.png"
+      "logoURI": "https://psidex.passive-income.io/images/coins/0xdc3890618bd71d3ef3ec18bb14a510c0da528947.png"
     },
     {
       "name": "Bakery Token",

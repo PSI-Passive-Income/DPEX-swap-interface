@@ -93,7 +93,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
       WETH[ChainId.MAINNET],
     ],
     [
-      new Token(ChainId.MAINNET, '0x75d8b48342149ff7f7f1786e6f8b839ca669e4cf', 18, 'INC', 'Income'),
+      new Token(ChainId.MAINNET, '0xDc3890618bd71d3eF3eC18BB14a510c0dA528947', 18, 'INC', 'Income'),
       WETH[ChainId.MAINNET],
     ],
     [BUSD, USDT],
