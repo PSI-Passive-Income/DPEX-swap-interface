@@ -27,6 +27,46 @@
       "logoURI": "https://psidex.passive-income.io/images/coins/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c.png"
     },
     {
+      "name": "Passive Income",
+      "symbol": "PSI",
+      "address": "0x9A5d9c681Db43D9863e9279c800A39449B7e1d6f",
+      "chainId": 56,
+      "decimals": 9,
+      "logoURI": "https://psidex.passive-income.io/images/coins/0x9a5d9c681db43d9863e9279c800a39449b7e1d6f.png"
+    },
+    {
+      "name": "Passive Income",
+      "symbol": "PSI",
+      "address": "0x066Bd99080eC62FE0E28bA687A53aC00794c17b6",
+      "chainId": 97,
+      "decimals": 9,
+      "logoURI": "https://psidex.passive-income.io/images/coins/0x9a5d9c681db43d9863e9279c800a39449b7e1d6f.png"
+    },
+    {
+      "name": "Passive Income",
+      "symbol": "PSI",
+      "address": "0xD30084E9d1271f803e26A0545E2D031013956D9E",
+      "chainId": 1337,
+      "decimals": 9,
+      "logoURI": "https://psidex.passive-income.io/images/coins/0x9a5d9c681db43d9863e9279c800a39449b7e1d6f.png"
+    },
+    {
+      "name": "Income",
+      "symbol": "INC",
+      "address": "0x75d8b48342149ff7f7f1786e6f8b839ca669e4cf",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://psidex.passive-income.io/images/coins/0x75d8b48342149ff7f7f1786e6f8b839ca669e4cf.png"
+    },
+    {
+      "name": "Income",
+      "symbol": "INC",
+      "address": "0x75d8b48342149ff7f7f1786e6f8b839ca669e4cf",
+      "chainId": 97,
+      "decimals": 18,
+      "logoURI": "https://psidex.passive-income.io/images/coins/0x75d8b48342149ff7f7f1786e6f8b839ca669e4cf.png"
+    },
+    {
       "name": "Bakery Token",
       "symbol": "BAKE",
       "address": "0xe02df9e3e622debdd69fb838bb799e3f168902c5",
@@ -201,30 +241,6 @@
       "chainId": 56,
       "decimals": 18,
       "logoURI": "https://psidex.passive-income.io/images/coins/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82.png"
-    },
-    {
-      "name": "Passive Income",
-      "symbol": "PSI",
-      "address": "0x9A5d9c681Db43D9863e9279c800A39449B7e1d6f",
-      "chainId": 56,
-      "decimals": 9,
-      "logoURI": "https://psidex.passive-income.io/images/coins/0x9a5d9c681db43d9863e9279c800a39449b7e1d6f.png"
-    },
-    {
-      "name": "Passive Income",
-      "symbol": "PSI",
-      "address": "0x066Bd99080eC62FE0E28bA687A53aC00794c17b6",
-      "chainId": 97,
-      "decimals": 9,
-      "logoURI": "https://psidex.passive-income.io/images/coins/0x9a5d9c681db43d9863e9279c800a39449b7e1d6f.png"
-    },
-    {
-      "name": "Passive Income",
-      "symbol": "PSI",
-      "address": "0xD30084E9d1271f803e26A0545E2D031013956D9E",
-      "chainId": 1337,
-      "decimals": 9,
-      "logoURI": "https://psidex.passive-income.io/images/coins/0x9a5d9c681db43d9863e9279c800a39449b7e1d6f.png"
     },
     {
       "name": "Streamity",
