@@ -43,9 +43,7 @@ const config: MenuEntry[] = [
   {
     label: 'Earn',
     icon: 'FarmIcon',
-    href: '#',
-    // href: 'https://psidex.passive-income.io/farms',
-    status: status.SOON,
+    href: `${process.env.REACT_APP_PSIDEX_URL}`,
   },
   // {
   //   label: 'Pools',
