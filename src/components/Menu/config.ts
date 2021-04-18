@@ -44,6 +44,7 @@ const config: MenuEntry[] = [
     label: 'Earn',
     icon: 'FarmIcon',
     href: `${process.env.REACT_APP_PSIDEX_URL}`,
+    status: status.LIVE
   },
   // {
   //   label: 'Pools',
