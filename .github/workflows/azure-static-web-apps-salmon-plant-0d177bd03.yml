@@ -43,6 +43,7 @@ jobs:
           REACT_APP_WETH_ADDRESS: "0xae13d989dac2f0debff460ac112a837c89baa7cd"
           REACT_APP_MULTICALL_ADDRESS: "0xA15fa9d67ed47b35a9E478007d943DB1c1286db6"
           REACT_APP_PSI_ADDRESS: "0x066Bd99080eC62FE0E28bA687A53aC00794c17b6"
+          REACT_APP_PSIDEX_URL: "https://psiearn-test.passive-income.io/"
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
