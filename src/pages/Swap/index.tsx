@@ -17,7 +17,7 @@ import TradePrice from 'components/swap/TradePrice'
 import TokenWarningModal from 'components/TokenWarningModal'
 import ProgressSteps from 'components/ProgressSteps'
 
-import { BASE_FACTORY_ADDRESS, INITIAL_ALLOWED_SLIPPAGE } from 'constants/index'
+import { BASE_FACTORY_ADDRESS, INITIAL_ALLOWED_SLIPPAGE, PANCAKESWAP_FACTORY_ADDRESS } from 'constants/index'
 import { useActiveWeb3React } from 'hooks'
 import { useCurrency } from 'hooks/Tokens'
 import { ApprovalState, useApproveCallbackFromTrade } from 'hooks/useApproveCallback'
@@ -130,6 +130,13 @@ const Swap = () => {
 
   // check if the pair is on the psi dex
   const notBaseFactory = chainId && route && route.pairs && route.pairs[0].factory !== BASE_FACTORY_ADDRESS[chainId];
+  const factoryName = useMemo(() => {
+    if (chainId && route && route.pairs) {
+      if (route.pairs[0].factory === BASE_FACTORY_ADDRESS[chainId]) return "PSI Dex"
+      if (route.pairs[0].factory === PANCAKESWAP_FACTORY_ADDRESS) return "PancakeSwap"
+    }
+    return null
+  }, [chainId, route])
 
   // check whether the user has approved the router on the input token
   const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage)
@@ -440,7 +447,8 @@ const Swap = () => {
             {notBaseFactory && userHasSpecifiedInputOutput ? (
               <BottomGrouping>
                 <GreyCard style={{ textAlign: 'center' }}>
-                  <Text mb="4px">{TranslateString(1194, 'PSI Dex has insufficient liquidity for this trade so we are falling back to another dex. Be the first to add liquidity to PSI Dex for this pair on the liquidity tab!')}</Text>
+                  <Text mb="4px">{`PSI Dex has insufficient liquidity for this trade so we are falling back to ${factoryName}.
+                  Be (one of) the first to add liquidity to PSI Dex for this pair on the liquidity tab!`}</Text>
                 </GreyCard>
               </BottomGrouping>
             ) : null}
