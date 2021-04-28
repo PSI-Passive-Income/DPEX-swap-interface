@@ -3263,10 +3263,10 @@
     hardhat-dependency-compiler "^1.1.1"
     hardhat-tracer "^1.0.0-alpha.2"
 
-"@passive-income/dpex-peripheral@1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@passive-income/dpex-peripheral/-/dpex-peripheral-1.1.5.tgz#c095f45f2ddfcf0aab2a40fcb51dc1aa70ca1a33"
-  integrity sha512-VFg5pYDKo7AfbqYFzCgGL670ktxy5H884sazgIU+TJR+DjjU20H5nSnsoi7MMdFQSYFLSredPTjS0E4y0NKvdA==
+"@passive-income/dpex-peripheral@1.1.8":
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/@passive-income/dpex-peripheral/-/dpex-peripheral-1.1.8.tgz#92b3aec639f77b9169c0ce005a70050eed9291e9"
+  integrity sha512-ITVUP6tft2qEBf1wd4u8XQYDZ+kgky0mDe8zp/8t+vPZnCMKsADE4deVEOwL8Kyj7yOrSzsa66YMcjbOSO5TaQ==
   dependencies:
     "@openzeppelin/contracts" "^3.3.0-solc-0.7"
     "@openzeppelin/contracts-upgradeable" "^3.3.0-solc-0.7"
@@ -3277,10 +3277,10 @@
     "@uniswap/lib" "1.1.1"
     dotenv "^8.2.0"
 
-"@passive-income/dpex-sdk@3.0.15":
-  version "3.0.15"
-  resolved "https://registry.yarnpkg.com/@passive-income/dpex-sdk/-/dpex-sdk-3.0.15.tgz#331b8fdf50bef5ca0c29cf77902aeef5479a1432"
-  integrity sha512-x6s+JxwNHkVGV5yVl/AbZcQbmwX5ebO4REEmw8eZUxRj2B/Zz9kJmcKdB8CVbbfMap1PQqOt/K6z1VIN+sn07A==
+"@passive-income/dpex-sdk@3.0.17":
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/@passive-income/dpex-sdk/-/dpex-sdk-3.0.17.tgz#ba29860d4104a83dc1a91e9d673d7e77184f0d1b"
+  integrity sha512-yW+BTtwypXV14yQliIW6ZfoX9RWRrTbziNVo69s5mjRNKzsbS3QHoj+a1+KL+ruIo94C0kXTAfShzRSZ1KBRRw==
   dependencies:
     "@passive-income/dpex-swap-core" "^0.1.7"
     big.js "^5.2.2"
