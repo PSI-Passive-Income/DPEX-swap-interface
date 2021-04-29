@@ -9,7 +9,7 @@
     "@ethersproject/experimental": "^5.0.1",
     "@passive-income/dpex-sdk": "3.0.17",
     "@passive-income/dpex-uikit": "0.17.9",
-    "@passive-income/dpex-peripheral": "1.1.8",
+    "@passive-income/dpex-peripheral": "1.1.9",
     "@passive-income/dpex-swap-core": "0.1.9",
     "@popperjs/core": "^2.4.4",
     "@reach/dialog": "^0.10.3",
