@@ -459,7 +459,7 @@ const Swap = () => {
             {differentFactories && userHasSpecifiedInputOutput ? (
               <BottomGrouping>
                 <GreyCard style={{ textAlign: 'center' }}>
-                  <Text mb="4px">{`PSI Dex has insufficient liquidity for all the trade so we are falling back on different pairs.
+                  <Text mb="4px">{`PSI Dex has insufficient liquidity for one or more of the trades so we are falling back on different pairs.
                   Check the path below which dexes are used in the process.`}</Text>
                 </GreyCard>
               </BottomGrouping>
