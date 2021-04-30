@@ -19,12 +19,7 @@ import ProgressSteps from 'components/ProgressSteps'
 
 import { 
   BASE_FACTORY_ADDRESS,
-  INITIAL_ALLOWED_SLIPPAGE,
-  PANCAKESWAP_FACTORY_ADDRESS,
-  PANCAKESWAP_FACTORY_ADDRESSV1,
-  BAKERYSWAP_FACTORY_ADDRESS,
-  JULSWAP_FACTORY_ADDRESS,
-  APESWAP_FACTORY_ADDRESS
+  INITIAL_ALLOWED_SLIPPAGE
 } from 'constants/index'
 import { useActiveWeb3React } from 'hooks'
 import { useCurrency } from 'hooks/Tokens'
@@ -41,6 +36,7 @@ import Loader from 'components/Loader'
 import useI18n from 'hooks/useI18n'
 import PageHeader from 'components/PageHeader'
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import { getFactoryNameByPair, usingDifferentFactories } from 'utils/factories'
 import AppBody from '../AppBody'
 
 const Swap = () => {
@@ -137,18 +133,14 @@ const Swap = () => {
   const noRoute = !route
 
   // check if the pair is on the psi dex
-  const notBaseFactory = chainId && route && route.pairs && route.pairs[0].factory !== BASE_FACTORY_ADDRESS[chainId];
-  const factoryName = useMemo(() => {
-    if (chainId && route && route.pairs) {
-      if (route.pairs[0].factory === BASE_FACTORY_ADDRESS[chainId]) return "PSI Dex"
-      if (route.pairs[0].factory === PANCAKESWAP_FACTORY_ADDRESS) return "PancakeSwap"
-      if (route.pairs[0].factory === PANCAKESWAP_FACTORY_ADDRESSV1) return "PancakeSwap (v1)"
-      if (route.pairs[0].factory === BAKERYSWAP_FACTORY_ADDRESS) return "BakerySwap"
-      if (route.pairs[0].factory === JULSWAP_FACTORY_ADDRESS) return "JulSwap"
-      if (route.pairs[0].factory === APESWAP_FACTORY_ADDRESS) return "ApeSwap"
+  const notBaseFactory = chainId && route && route.pairs && route.pairs.length === 1 && route.pairs[0].factory !== BASE_FACTORY_ADDRESS[chainId];
+  const differentFactories = chainId && route && usingDifferentFactories(route);
+  const firstFactoryName = useMemo(() => {
+    if (route && route.pairs) {
+      return getFactoryNameByPair(route.pairs[0])
     }
     return null
-  }, [chainId, route])
+  }, [route])
 
   // check whether the user has approved the router on the input token
   const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage)
@@ -459,8 +451,16 @@ const Swap = () => {
             {notBaseFactory && userHasSpecifiedInputOutput ? (
               <BottomGrouping>
                 <GreyCard style={{ textAlign: 'center' }}>
-                  <Text mb="4px">{`PSI Dex has insufficient liquidity for this trade so we are falling back to ${factoryName}.
+                  <Text mb="4px">{`PSI Dex has insufficient liquidity for this trade so we are falling back to ${firstFactoryName}.
                   Be (one of) the first to add liquidity to PSI Dex for this pair on the liquidity tab!`}</Text>
+                </GreyCard>
+              </BottomGrouping>
+            ) : null}
+            {differentFactories && userHasSpecifiedInputOutput ? (
+              <BottomGrouping>
+                <GreyCard style={{ textAlign: 'center' }}>
+                  <Text mb="4px">{`PSI Dex has insufficient liquidity for all the trade so we are falling back on different pairs.
+                  Check the path below which dexes are used in the process.`}</Text>
                 </GreyCard>
               </BottomGrouping>
             ) : null}

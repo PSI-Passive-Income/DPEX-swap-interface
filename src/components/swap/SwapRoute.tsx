@@ -3,10 +3,13 @@ import React, { Fragment, memo, useContext } from 'react'
 import { ChevronRight } from 'react-feather'
 import { Flex, Text } from '@passive-income/dpex-uikit'
 import { ThemeContext } from 'styled-components'
+import { getFactoryNameByPair, usingDifferentFactories } from 'utils/factories'
 import CurrencyLogo from '../CurrencyLogo'
 
 export default memo(function SwapRoute({ trade }: { trade: Trade }) {
   const theme = useContext(ThemeContext)
+  const differentFactories = usingDifferentFactories(trade.route)
+  
   return (
     <Flex
       px="1rem"
@@ -29,6 +32,16 @@ export default memo(function SwapRoute({ trade }: { trade: Trade }) {
               </Text>
             </Flex>
             {isLastItem ? null : <ChevronRight color="textSubtle" />}
+            {!differentFactories || isLastItem ? null : (
+              <>
+                <Flex my="0.5rem" alignItems="center" style={{ flexShrink: 0 }}>
+                  <Text fontSize="14px" color="text" ml="0.5rem">
+                    {getFactoryNameByPair(trade.route.pairs[i])}
+                  </Text>
+                </Flex>
+                <ChevronRight color="textSubtle" />
+              </>
+            )}
           </Fragment>
         )
       })}
