@@ -17,7 +17,15 @@ import TradePrice from 'components/swap/TradePrice'
 import TokenWarningModal from 'components/TokenWarningModal'
 import ProgressSteps from 'components/ProgressSteps'
 
-import { BASE_FACTORY_ADDRESS, INITIAL_ALLOWED_SLIPPAGE, PANCAKESWAP_FACTORY_ADDRESS, PANCAKESWAP_FACTORY_ADDRESSV1, BAKERYSWAP_FACTORY_ADDRESS } from 'constants/index'
+import { 
+  BASE_FACTORY_ADDRESS,
+  INITIAL_ALLOWED_SLIPPAGE,
+  PANCAKESWAP_FACTORY_ADDRESS,
+  PANCAKESWAP_FACTORY_ADDRESSV1,
+  BAKERYSWAP_FACTORY_ADDRESS,
+  JULSWAP_FACTORY_ADDRESS,
+  APESWAP_FACTORY_ADDRESS
+} from 'constants/index'
 import { useActiveWeb3React } from 'hooks'
 import { useCurrency } from 'hooks/Tokens'
 import { ApprovalState, useApproveCallbackFromTrade } from 'hooks/useApproveCallback'
@@ -136,6 +144,8 @@ const Swap = () => {
       if (route.pairs[0].factory === PANCAKESWAP_FACTORY_ADDRESS) return "PancakeSwap"
       if (route.pairs[0].factory === PANCAKESWAP_FACTORY_ADDRESSV1) return "PancakeSwap (v1)"
       if (route.pairs[0].factory === BAKERYSWAP_FACTORY_ADDRESS) return "BakerySwap"
+      if (route.pairs[0].factory === JULSWAP_FACTORY_ADDRESS) return "JulSwap"
+      if (route.pairs[0].factory === APESWAP_FACTORY_ADDRESS) return "ApeSwap"
     }
     return null
   }, [chainId, route])
