@@ -80,28 +80,28 @@ const config: MenuEntry[] = [
   //     },
   //   ],
   // },
-  // {
-  //   label: 'Info',
-  //   icon: 'InfoIcon',
-  //   items: [
-  //     {
-  //       label: 'Overview',
-  //       href: 'https://pancakeswap.info',
-  //     },
-  //     {
-  //       label: 'Tokens',
-  //       href: 'https://pancakeswap.info/tokens',
-  //     },
-  //     {
-  //       label: 'Pairs',
-  //       href: 'https://pancakeswap.info/pairs',
-  //     },
-  //     {
-  //       label: 'Accounts',
-  //       href: 'https://pancakeswap.info/accounts',
-  //     },
-  //   ],
-  // },
+  {
+    label: 'Info',
+    icon: 'InfoIcon',
+    items: [
+      {
+        label: 'Overview',
+        href: 'https://info.passive-income.io/',
+      },
+      {
+        label: 'Tokens',
+        href: 'https://info.passive-income.io/tokens',
+      },
+      {
+        label: 'Pairs',
+        href: 'https://info.passive-income.io/pairs',
+      },
+      {
+        label: 'Accounts',
+        href: 'https://info.passive-income.io/accounts',
+      },
+    ],
+  },
   // {
   //   label: 'IFO',
   //   icon: 'IfoIcon',
