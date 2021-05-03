@@ -31,7 +31,7 @@ export default memo(function SwapRoute({ trade }: { trade: Trade }) {
                 {token.symbol}
               </Text>
             </Flex>
-            {isLastItem ? null : <ChevronRight color="textSubtle" />}
+            {isLastItem ? null : <ChevronRight fill="textSubtle" />}
             {!differentFactories || isLastItem ? null : (
               <>
                 <Flex my="0.5rem" alignItems="center" style={{ flexShrink: 0 }}>
@@ -39,7 +39,7 @@ export default memo(function SwapRoute({ trade }: { trade: Trade }) {
                     {getFactoryNameByPair(trade.route.pairs[i])}
                   </Text>
                 </Flex>
-                <ChevronRight color="textSubtle" />
+                <ChevronRight fill="textSubtle" />
               </>
             )}
           </Fragment>
