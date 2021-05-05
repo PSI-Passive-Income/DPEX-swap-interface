@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from "@apollo/client/core";
 
 export const PAIRS_VOLUME_QUERY = gql`
   query PairsVolume($limit: Int!, $pairIds: [ID!]!, $blockNumber: Int!) {
