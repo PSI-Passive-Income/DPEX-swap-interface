@@ -1,0 +1,17 @@
+overwrite: true
+config:
+  declarationKind: 'interface'
+  immutableTypes: true
+generates:
+  ./schemas/generated/exchange.ts:
+    schema: https://api.thegraph.com/subgraphs/name/psi-passive-income/exchange
+    documents: 'schemas/exchange/queries.ts'
+    plugins:
+      - typescript
+      - typescript-operations
+  ./schemas/generated/blocks.ts:
+    schema: https://api.thegraph.com/subgraphs/name/psi-passive-income/blocks
+    documents: 'schemas/blocks/queries.ts'
+    plugins:
+      - typescript
+      - typescript-operations
