@@ -17,6 +17,7 @@ export const TOKEN_BY_ADDRESS = gql`
       name
       symbol
       derivedBNB
+      derivedUSD
     }
   }
 `;
@@ -27,6 +28,7 @@ export const TOP_PAIRS = gql`
     name
     symbol
     derivedBNB
+    derivedUSD
   }
 
   query TopPairs($limit: Int!, $excludeTokenIds: [String!]!) {

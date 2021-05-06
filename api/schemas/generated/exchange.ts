@@ -2043,6 +2043,7 @@ export interface Token {
   readonly txCount: Scalars['BigInt'];
   readonly totalLiquidity: Scalars['BigDecimal'];
   readonly derivedBNB?: Maybe<Scalars['BigDecimal']>;
+  readonly derivedUSD?: Maybe<Scalars['BigDecimal']>;
   readonly tokenDayData: ReadonlyArray<TokenDayData>;
   readonly pairDayDataBase: ReadonlyArray<PairDayData>;
   readonly pairDayDataQuote: ReadonlyArray<PairDayData>;
@@ -2322,6 +2323,14 @@ export interface Token_Filter {
   readonly derivedBNB_lte?: Maybe<Scalars['BigDecimal']>;
   readonly derivedBNB_in?: Maybe<ReadonlyArray<Scalars['BigDecimal']>>;
   readonly derivedBNB_not_in?: Maybe<ReadonlyArray<Scalars['BigDecimal']>>;
+  readonly derivedUSD?: Maybe<Scalars['BigDecimal']>;
+  readonly derivedUSD_not?: Maybe<Scalars['BigDecimal']>;
+  readonly derivedUSD_gt?: Maybe<Scalars['BigDecimal']>;
+  readonly derivedUSD_lt?: Maybe<Scalars['BigDecimal']>;
+  readonly derivedUSD_gte?: Maybe<Scalars['BigDecimal']>;
+  readonly derivedUSD_lte?: Maybe<Scalars['BigDecimal']>;
+  readonly derivedUSD_in?: Maybe<ReadonlyArray<Scalars['BigDecimal']>>;
+  readonly derivedUSD_not_in?: Maybe<ReadonlyArray<Scalars['BigDecimal']>>;
 }
 
 export enum Token_OrderBy {
@@ -2336,6 +2345,7 @@ export enum Token_OrderBy {
   TxCount = 'txCount',
   TotalLiquidity = 'totalLiquidity',
   DerivedBnb = 'derivedBNB',
+  DerivedUsd = 'derivedUSD',
   TokenDayData = 'tokenDayData',
   PairDayDataBase = 'pairDayDataBase',
   PairDayDataQuote = 'pairDayDataQuote',
@@ -2524,13 +2534,13 @@ export type TokenQuery = (
   { readonly __typename?: 'Query' }
   & { readonly token?: Maybe<(
     { readonly __typename?: 'Token' }
-    & Pick<Token, 'id' | 'name' | 'symbol' | 'derivedBNB'>
+    & Pick<Token, 'id' | 'name' | 'symbol' | 'derivedBNB' | 'derivedUSD'>
   )> }
 );
 
 export type TokenInfoFragment = (
   { readonly __typename?: 'Token' }
-  & Pick<Token, 'id' | 'name' | 'symbol' | 'derivedBNB'>
+  & Pick<Token, 'id' | 'name' | 'symbol' | 'derivedBNB' | 'derivedUSD'>
 );
 
 export type TopPairsQueryVariables = Exact<{

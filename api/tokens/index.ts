@@ -5,7 +5,7 @@ import { getTopPairs, getTokenByAddress, Token } from "../utils";
 interface TokenResult {
   name: string | undefined;
   symbol: string | undefined;
-  // price: string;
+  price: string;
   price_BNB: string;
 }
 interface ReturnShape {
@@ -17,7 +17,7 @@ const tokenToResult = function tokenToResult(token: Token): TokenResult {
   return {
     name: token?.name,
     symbol: token?.symbol,
-    // price: token?.derivedUSD,
+    price: token?.derivedUSD,
     price_BNB: token?.derivedBNB,
   }
 }
