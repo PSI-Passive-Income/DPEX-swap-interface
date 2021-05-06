@@ -4,26 +4,20 @@ import { useWeb3React } from '@web3-react/core'
 import { allLanguages } from 'constants/localisation/languageCodes'
 import { LanguageContext } from 'hooks/LanguageContext'
 import useTheme from 'hooks/useTheme'
-import useGetPriceDataFromCoingecko from 'hooks/useGetPriceDataFromCoingecko'
+import useGetPriceData from 'hooks/useGetPriceData'
 import useGetLocalProfile from 'hooks/useGetLocalProfile'
 import useAuth from 'hooks/useAuth'
 import links from './config'
+import { PSI, INC } from '../../constants'
 
 const Menu: React.FC = (props) => {
   const { account } = useWeb3React()
   const { login, logout } = useAuth()
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
-
-  let psiPriceUsd: number | undefined;
-  const priceData = useGetPriceDataFromCoingecko("passive-income");
-  if (priceData) {
-    const tickers = (priceData.tickers as any[]).filter(t => t.base === "0X9A5D9C681DB43D9863E9279C800A39449B7E1D6F")
-    if (tickers) {
-      psiPriceUsd = tickers[0].converted_last.usd
-    }
-  }
-
+  const priceData = useGetPriceData()
+  const psiPriceUsd = priceData ? Number(priceData.data[PSI].price) : undefined
+  const incPriceUsd = priceData ? Number(priceData.data[INC].price) : undefined
   const profile = useGetLocalProfile()
 
   return (
@@ -38,6 +32,7 @@ const Menu: React.FC = (props) => {
       langs={allLanguages}
       setLang={setSelectedLanguage}
       psiPriceUsd={psiPriceUsd}
+      incomePriceUsd={incPriceUsd}
       profile={profile}
       {...props}
     />

@@ -110,11 +110,12 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.BSCTESTNET]: [...WETH_ONLY[ChainId.BSCTESTNET]],
 }
 
-const psiAddress = process.env && process.env.REACT_APP_PSI_ADDRESS ? process.env.REACT_APP_PSI_ADDRESS as string : null;
+export const PSI = process.env && process.env.REACT_APP_PSI_ADDRESS ? process.env.REACT_APP_PSI_ADDRESS as string : "0x9A5d9c681Db43D9863e9279c800A39449B7e1d6f";
+export const INC = process.env && process.env.REACT_APP_INC_ADDRESS ? process.env.REACT_APP_INC_ADDRESS as string : "0xDc3890618bd71d3eF3eC18BB14a510c0dA528947";
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
   [ChainId.MAINNET]: [
     [
-      new Token(ChainId.MAINNET, psiAddress ?? '0x9A5d9c681Db43D9863e9279c800A39449B7e1d6f', 9, 'PSI', 'Passive Income'),
+      new Token(ChainId.MAINNET, '0x9A5d9c681Db43D9863e9279c800A39449B7e1d6f', 9, 'PSI', 'Passive Income'),
       WETH[ChainId.MAINNET],
     ],
     [
@@ -126,7 +127,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
   ],
   [ChainId.BSCTESTNET]: [
     [
-      new Token(ChainId.BSCTESTNET, psiAddress ?? '0x066Bd99080eC62FE0E28bA687A53aC00794c17b6', 9, 'PSI', 'Passive Income'),
+      new Token(ChainId.BSCTESTNET, '0x066Bd99080eC62FE0E28bA687A53aC00794c17b6', 9, 'PSI', 'Passive Income'),
       WETH[ChainId.BSCTESTNET],
     ],
     [
@@ -136,7 +137,7 @@ export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } 
   ],
   [ChainId.GANACHETESTNET]: [
     [
-      new Token(ChainId.GANACHETESTNET, psiAddress ?? '0xD30084E9d1271f803e26A0545E2D031013956D9E', 9, 'PSI', 'Passive Income'),
+      new Token(ChainId.GANACHETESTNET, PSI ?? '0xD30084E9d1271f803e26A0545E2D031013956D9E', 9, 'PSI', 'Passive Income'),
       WETH[ChainId.GANACHETESTNET],
     ]
   ],
