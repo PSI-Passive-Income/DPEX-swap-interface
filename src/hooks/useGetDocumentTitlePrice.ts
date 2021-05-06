@@ -15,10 +15,10 @@ const useGetDocumentTitlePrice = () => {
           minimumFractionDigits: 3,
           maximumFractionDigits: 3,
         })}`
-  priceString =
+  priceString +=
     Number.isNaN(incPriceUsd) || incPriceUsd === 0
       ? ''
-      : ` | PSI - $${incPriceUsd.toLocaleString(undefined, {
+      : ` | INC - $${incPriceUsd.toLocaleString(undefined, {
           minimumFractionDigits: 3,
           maximumFractionDigits: 3,
         })}`
