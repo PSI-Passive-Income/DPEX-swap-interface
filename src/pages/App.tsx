@@ -18,7 +18,7 @@ import { TranslationsContext } from '../hooks/TranslationsContext'
 import backgroundImage from './dpex_background.svg';
 
 import Menu from '../components/Menu'
-// import useGetDocumentTitlePrice from '../hooks/useGetDocumentTitlePrice'
+import useGetDocumentTitlePrice from '../hooks/useGetDocumentTitlePrice'
 
 const AppWrapper = styled.div`
   display: flex;
@@ -116,7 +116,7 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLanguage])
 
-  // useGetDocumentTitlePrice()
+  useGetDocumentTitlePrice()
 
   return (
     <Suspense fallback={null}>
