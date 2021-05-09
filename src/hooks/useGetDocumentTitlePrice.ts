@@ -5,8 +5,8 @@ import { PSI, INC } from '../constants'
 const useGetDocumentTitlePrice = () => {
   const priceData = useGetPriceData()
 
-  const psiPriceUsd = priceData ? parseFloat(priceData.data[PSI].price) : 0
-  const incPriceUsd = priceData ? parseFloat(priceData.data[INC].price) : 0
+  const psiPriceUsd = priceData && priceData.data && priceData.data[PSI] ? parseFloat(priceData.data[PSI].price) : 0
+  const incPriceUsd = priceData && priceData.data && priceData.data[INC] ? parseFloat(priceData.data[INC].price) : 0
 
   let priceString =
     Number.isNaN(psiPriceUsd) || psiPriceUsd === 0
