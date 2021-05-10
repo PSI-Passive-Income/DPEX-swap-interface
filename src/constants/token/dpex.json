@@ -67,6 +67,22 @@
       "logoURI": "https://psidex.passive-income.io/images/coins/0xdc3890618bd71d3ef3ec18bb14a510c0da528947.png"
     },
     {
+      "name": "OMNI Real Estate Token",
+      "symbol": "ORT",
+      "address": "0x1d64327c74d6519afef54e58730ad6fc797f05ba",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://psidex.passive-income.io/images/coins/0x1d64327c74d6519afef54e58730ad6fc797f05ba.png"
+    },
+    {
+      "name": "OMNI Real Estate Token",
+      "symbol": "ORT",
+      "address": "0x5ed78a73d29696f8b591ea30ce73e93cce9514ee",
+      "chainId": 97,
+      "decimals": 18,
+      "logoURI": "https://psidex.passive-income.io/images/coins/0x1d64327c74d6519afef54e58730ad6fc797f05ba.png"
+    },
+    {
       "name": "Bakery Token",
       "symbol": "BAKE",
       "address": "0xe02df9e3e622debdd69fb838bb799e3f168902c5",
