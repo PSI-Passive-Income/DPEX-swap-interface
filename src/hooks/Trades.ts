@@ -1,6 +1,7 @@
 import { ChainId, Currency, CurrencyAmount, Pair, Token, Trade } from '@passive-income/dpex-sdk'
 import flatMap from 'lodash.flatmap'
 import { useMemo } from 'react'
+import { useGetTradeExactIn } from 'state/trades/hooks'
 
 import { BASES_TO_CHECK_TRADES_AGAINST, BASE_FACTORY_ADDRESS, CUSTOM_BASES } from '../constants'
 import { PairState, usePairs } from '../data/Reserves'
@@ -107,15 +108,20 @@ function sortTrades(chainId: ChainId, maxPriceImpact: number, tradeA: Trade, tra
  */
 export function useTradeExactIn(chainId: ChainId | undefined, currencyAmountIn?: CurrencyAmount, currencyOut?: Currency): Trade | null {
   const allowedPairs = useAllCommonPairs(currencyAmountIn?.currency, currencyOut)
+  console.log(allowedPairs.map((val) => {
+    return `${val.factory} - ${val.token0.symbol} - ${val.token1.symbol}`
+  }));
+
+  const trades = useGetTradeExactIn(allowedPairs, currencyAmountIn, currencyOut)
   
   return useMemo(() => {
-    if (chainId && currencyAmountIn && currencyOut && allowedPairs.length > 0) {
-      const trades = Trade.bestTradeExactIn(allowedPairs, currencyAmountIn, currencyOut, { maxHops: 3, maxNumResults: 3 })
+    if (chainId && trades && trades.length > 0) {
+      console.log("retrieved best trades", trades);
       const sortedTrades = trades.sort((a, b) => sortTrades(chainId, 3, a, b))
       return sortedTrades[0] ?? null
     }
     return null
-  }, [allowedPairs, chainId, currencyAmountIn, currencyOut])
+  }, [chainId, trades])
 }
 
 /**
@@ -123,10 +129,13 @@ export function useTradeExactIn(chainId: ChainId | undefined, currencyAmountIn?:
  */
 export function useTradeExactOut(chainId: ChainId | undefined, currencyIn?: Currency, currencyAmountOut?: CurrencyAmount): Trade | null {
   const allowedPairs = useAllCommonPairs(currencyIn, currencyAmountOut?.currency)
+  console.log(allowedPairs.map((val) => {
+    return `${val.factory} - ${val.token0.symbol} - ${val.token1.symbol}`
+  }));
 
   return useMemo(() => {
     if (chainId && currencyIn && currencyAmountOut && allowedPairs.length > 0) {
-      const trades = Trade.bestTradeExactOut(allowedPairs, currencyIn, currencyAmountOut, { maxHops: 3, maxNumResults: 3 })
+      const trades = Trade.bestTradeExactOut(allowedPairs, currencyIn, currencyAmountOut, { maxHops: 2, maxNumResults: 3 })
       const sortedTrades = trades.sort((a, b) => sortTrades(chainId, 3, a, b))
       return sortedTrades[0] ?? null
     }

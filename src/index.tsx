@@ -7,6 +7,7 @@ import ApplicationUpdater from './state/application/updater'
 import ListsUpdater from './state/lists/updater'
 import MulticallUpdater from './state/multicall/updater'
 import TransactionUpdater from './state/transactions/updater'
+import TradesUpdater from './state/trades/updater'
 import ToastListener from './components/ToastListener'
 import Providers from './Providers'
 import 'inter-ui'
@@ -28,6 +29,7 @@ ReactDOM.render(
         <ApplicationUpdater />
         <TransactionUpdater />
         <MulticallUpdater />
+        <TradesUpdater />
         <ToastListener />
       </>
       <ResetCSS />

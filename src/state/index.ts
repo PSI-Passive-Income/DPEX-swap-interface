@@ -10,6 +10,7 @@ import mint from './mint/reducer'
 import lists from './lists/reducer'
 import burn from './burn/reducer'
 import multicall from './multicall/reducer'
+import trades from './trades/reducer'
 import toasts from './toasts'
 import { getThemeCache } from '../utils/theme'
 
@@ -36,10 +37,11 @@ const store = configureStore({
     mint,
     burn,
     multicall,
+    trades,
     lists,
     toasts
   },
-  middleware: [...getDefaultMiddleware({ thunk: false }), save({ states: PERSISTED_KEYS })],
+  middleware: [...getDefaultMiddleware({ thunk: false, serializableCheck: false }), save({ states: PERSISTED_KEYS })],
   preloadedState: loadedState,
 })
 
