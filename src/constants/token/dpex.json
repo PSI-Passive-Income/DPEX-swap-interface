@@ -127,7 +127,7 @@
       "symbol": "EMPIRE",
       "address": "0x293C3Ee9ABaCb08BB8ceD107987F00EfD1539288",
       "chainId": 56,
-      "decimals": 18,
+      "decimals": 9,
       "logoURI": "https://psidex.passive-income.io/images/coins/0x293c3ee9abacb08bb8ced107987f00efd1539288.png"
     },
     {
