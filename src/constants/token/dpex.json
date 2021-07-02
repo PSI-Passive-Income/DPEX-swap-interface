@@ -123,6 +123,14 @@
       "logoURI": "https://psidex.passive-income.io/images/coins/0x643b6ef6306417a0b3fa2813eb5baf30f5dd8736.png"
     },
     {
+      "name": "Empire Token",
+      "symbol": "EMPIRE",
+      "address": "0x293C3Ee9ABaCb08BB8ceD107987F00EfD1539288",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://psidex.passive-income.io/images/coins/0x293c3ee9abacb08bb8ced107987f00efd1539288.png"
+    },
+    {
       "name": "Bakery Token",
       "symbol": "BAKE",
       "address": "0xe02df9e3e622debdd69fb838bb799e3f168902c5",
